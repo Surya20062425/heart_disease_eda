@@ -2,7 +2,7 @@
 #   heart_disease ~ age            (single continuous predictor)
 # Also reports the single best categorical predictor, for contrast.
 # Console: Rscript 02_linear_regression.R > linear_regression_report.txt
-source("C:/Users/b7993/heart_disease_eda/common.R")
+source("common.R")
 df <- read_data()
 
 # lm() drops rows with any NA; do it once here so every model sees the same data

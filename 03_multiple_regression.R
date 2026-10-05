@@ -5,7 +5,7 @@
 #   M4  everything                                      (full model)
 # Baseline: always predict No -> accuracy = prevalence.
 # Console: Rscript 03_multiple_regression.R > multiple_regression_report.txt
-source("C:/Users/b7993/heart_disease_eda/common.R")
+source("common.R")
 df <- read_data()
 
 feat <- setdiff(names(df), TARGET)

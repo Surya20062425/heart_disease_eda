@@ -1,6 +1,6 @@
 # Stage 1: EDA on oktayrdeki/heart-disease.
 # Console: Rscript 01_eda.R > eda_report.txt
-source("C:/Users/b7993/heart_disease_eda/common.R")
+source("common.R")
 df <- read_data()
 
 cat(SEP, "\n1. STRUCTURE\n", SEP, "\n")
