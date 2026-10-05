@@ -13,6 +13,9 @@ venv/
 # Data (optional - keep if small)
 *.csv
 
+# Generated outputs
+images_r/
+
 # OS
 .DS_Store
 Thumbs.db
