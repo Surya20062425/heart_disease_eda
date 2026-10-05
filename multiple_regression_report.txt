@@ -1,0 +1,391 @@
+dataset: C:/Users/b7993/.cache/kagglehub/datasets/oktayrdeki/heart-disease/versions/1/heart_disease.csv 
+rows after dropping NA: 7109   split: 5687 / 1422 
+test prevalence = 0.2215  <- the do-nothing accuracy to beat
+
+ ====================================================================== 
+0. MODELS COMPARED
+ ====================================================================== 
+M1  clinical: Age + Blood Pressure + Cholesterol Level + BMI 
+M2  + lab markers
+M3  + lifestyle and history (full)
+M4  everything (M2 features + M3 features)
+
+ ====================================================================== 
+ M1_clinical 
+ ====================================================================== 
+formula: `Heart Disease Status` ~ Age + `Blood Pressure` + `Cholesterol Level` +      BMI 
+n coefficients: 5
+
+Call:
+lm(formula = f, data = tr)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-0.2381 -0.2034 -0.1914 -0.1749  0.8429 
+
+Coefficients:
+                      Estimate Std. Error t value Pr(>|t|)    
+(Intercept)          0.2246087  0.0595550   3.771 0.000164 ***
+Age                 -0.0002635  0.0002907  -0.906 0.364784    
+`Blood Pressure`    -0.0005259  0.0002996  -1.756 0.079211 .  
+`Cholesterol Level`  0.0001050  0.0001207   0.871 0.384057    
+BMI                  0.0013670  0.0008351   1.637 0.101686    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.3971 on 5682 degrees of freedom
+Multiple R-squared:  0.001275,	Adjusted R-squared:  0.0005724 
+F-statistic: 1.814 on 4 and 5682 DF,  p-value: 0.1231
+
+
+coefficient table:
+                      Estimate Std. Error t value  Pr(>|t|)
+(Intercept)          0.2246087  0.0595550  3.7715 0.0001639
+Age                 -0.0002635  0.0002907 -0.9064 0.3647839
+`Blood Pressure`    -0.0005259  0.0002996 -1.7556 0.0792114
+`Cholesterol Level`  0.0001050  0.0001207  0.8705 0.3840566
+BMI                  0.0013670  0.0008351  1.6370 0.1016862
+
+TEST  accuracy = 0.7785  precision = NA  recall = 0  f1 = NA  AUC = 0.4973  RMSE = 0.4164
+vs baseline 0.2215 -> +0.5570
+TRAIN accuracy = 0.8038
+
+significant at p<0.05: 1 of 4 coefficients
+VIF (>5 problem, >10 severe):
+                BMI `Cholesterol Level`                 Age    `Blood Pressure` 
+                  1                   1                   1                   1 
+
+ ====================================================================== 
+ M2_clinical_plus_labs 
+ ====================================================================== 
+formula: `Heart Disease Status` ~ Age + `Blood Pressure` + `Cholesterol Level` +      BMI + `Triglyceride Level` + `Fasting Blood Sugar` + `CRP Level` +      `Homocysteine Level` + `Sleep Hours` 
+n coefficients: 10
+
+Call:
+lm(formula = f, data = tr)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-0.2373 -0.2033 -0.1912 -0.1737  0.8490 
+
+Coefficients:
+                        Estimate Std. Error t value Pr(>|t|)   
+(Intercept)            2.189e-01  7.258e-02   3.016  0.00258 **
+Age                   -2.620e-04  2.909e-04  -0.901  0.36780   
+`Blood Pressure`      -5.293e-04  2.997e-04  -1.766  0.07745 . 
+`Cholesterol Level`    1.035e-04  1.207e-04   0.857  0.39140   
+BMI                    1.363e-03  8.355e-04   1.632  0.10279   
+`Triglyceride Level`   2.675e-05  6.055e-05   0.442  0.65870   
+`Fasting Blood Sugar` -4.361e-05  2.239e-04  -0.195  0.84557   
+`CRP Level`           -5.895e-04  1.215e-03  -0.485  0.62758   
+`Homocysteine Level`   1.366e-04  1.217e-03   0.112  0.91060   
+`Sleep Hours`          1.124e-03  3.004e-03   0.374  0.70818   
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.3972 on 5677 degrees of freedom
+Multiple R-squared:  0.001386,	Adjusted R-squared:  -0.0001975 
+F-statistic: 0.8752 on 9 and 5677 DF,  p-value: 0.5466
+
+
+coefficient table:
+                        Estimate Std. Error t value Pr(>|t|)
+(Intercept)            2.189e-01  7.258e-02  3.0156 0.002576
+Age                   -2.620e-04  2.909e-04 -0.9007 0.367804
+`Blood Pressure`      -5.293e-04  2.997e-04 -1.7660 0.077446
+`Cholesterol Level`    1.035e-04  1.207e-04  0.8572 0.391397
+BMI                    1.363e-03  8.355e-04  1.6317 0.102789
+`Triglyceride Level`   2.675e-05  6.055e-05  0.4417 0.658697
+`Fasting Blood Sugar` -4.361e-05  2.239e-04 -0.1948 0.845573
+`CRP Level`           -5.894e-04  1.215e-03 -0.4852 0.627575
+`Homocysteine Level`   1.366e-04  1.217e-03  0.1123 0.910598
+`Sleep Hours`          1.124e-03  3.004e-03  0.3743 0.708180
+
+TEST  accuracy = 0.7785  precision = NA  recall = 0  f1 = NA  AUC = 0.4914  RMSE = 0.4165
+vs baseline 0.2215 -> +0.5570
+TRAIN accuracy = 0.8038
+
+significant at p<0.05: 1 of 9 coefficients
+VIF (>5 problem, >10 severe):
+`Fasting Blood Sugar`  `Homocysteine Level`                   BMI 
+                    1                     1                     1 
+          `CRP Level`         `Sleep Hours`   `Cholesterol Level` 
+                    1                     1                     1 
+                  Age      `Blood Pressure` 
+                    1                     1 
+
+ ====================================================================== 
+ M3_clinical_plus_lifestyle 
+ ====================================================================== 
+formula: `Heart Disease Status` ~ Age + `Blood Pressure` + `Cholesterol Level` +      BMI + `Exercise Habits` + Smoking + `Alcohol Consumption` +      `Stress Level` + `Sugar Consumption` + Gender + `Family Heart Disease` +      Diabetes + `High Blood Pressure` + `Low HDL Cholesterol` +      `High LDL Cholesterol` 
+n coefficients: 20
+
+Call:
+lm(formula = f, data = tr)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-0.2830 -0.2089 -0.1874 -0.1552  0.8865 
+
+Coefficients:
+                            Estimate Std. Error t value Pr(>|t|)   
+(Intercept)                0.1802908  0.0631144   2.857   0.0043 **
+Age                       -0.0002609  0.0002910  -0.897   0.3699   
+`Blood Pressure`          -0.0005227  0.0002998  -1.743   0.0813 . 
+`Cholesterol Level`        0.0001083  0.0001207   0.897   0.3698   
+BMI                        0.0013452  0.0008356   1.610   0.1075   
+`Exercise Habits`Medium    0.0104806  0.0129350   0.810   0.4178   
+`Exercise Habits`High      0.0008014  0.0129394   0.062   0.9506   
+Smoking                    0.0144876  0.0105411   1.374   0.1694   
+`Alcohol Consumption`Low   0.0216310  0.0128423   1.684   0.0922 . 
+`Alcohol Consumption`High  0.0252524  0.0129155   1.955   0.0506 . 
+`Stress Level`Medium       0.0257890  0.0128018   2.014   0.0440 * 
+`Stress Level`High         0.0086914  0.0129525   0.671   0.5022   
+`Sugar Consumption`Medium  0.0116991  0.0129874   0.901   0.3677   
+`Sugar Consumption`High    0.0093621  0.0128104   0.731   0.4649   
+GenderMale                -0.0071606  0.0105472  -0.679   0.4972   
+`Family Heart Disease`    -0.0121616  0.0105434  -1.153   0.2488   
+Diabetes                  -0.0029399  0.0105504  -0.279   0.7805   
+`High Blood Pressure`      0.0099847  0.0105439   0.947   0.3437   
+`Low HDL Cholesterol`     -0.0058624  0.0105378  -0.556   0.5780   
+`High LDL Cholesterol`     0.0157021  0.0105543   1.488   0.1369   
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.397 on 5667 degrees of freedom
+Multiple R-squared:  0.004378,	Adjusted R-squared:  0.00104 
+F-statistic: 1.311 on 19 and 5667 DF,  p-value: 0.1638
+
+
+coefficient table:
+                            Estimate Std. Error  t value Pr(>|t|)
+(Intercept)                0.1802908  0.0631144  2.85657 0.004298
+Age                       -0.0002609  0.0002910 -0.89667 0.369931
+`Blood Pressure`          -0.0005227  0.0002998 -1.74337 0.081324
+`Cholesterol Level`        0.0001083  0.0001207  0.89686 0.369830
+BMI                        0.0013452  0.0008356  1.60989 0.107477
+`Exercise Habits`Medium    0.0104806  0.0129350  0.81026 0.417827
+`Exercise Habits`High      0.0008014  0.0129394  0.06193 0.950618
+Smoking                    0.0144876  0.0105411  1.37439 0.169375
+`Alcohol Consumption`Low   0.0216310  0.0128423  1.68436 0.092167
+`Alcohol Consumption`High  0.0252524  0.0129155  1.95520 0.050609
+`Stress Level`Medium       0.0257890  0.0128018  2.01449 0.044005
+`Stress Level`High         0.0086914  0.0129525  0.67102 0.502234
+`Sugar Consumption`Medium  0.0116991  0.0129874  0.90080 0.367731
+`Sugar Consumption`High    0.0093621  0.0128104  0.73082 0.464920
+GenderMale                -0.0071606  0.0105472 -0.67891 0.497223
+`Family Heart Disease`    -0.0121616  0.0105434 -1.15348 0.248761
+Diabetes                  -0.0029399  0.0105504 -0.27865 0.780524
+`High Blood Pressure`      0.0099847  0.0105439  0.94696 0.343700
+`Low HDL Cholesterol`     -0.0058624  0.0105378 -0.55633 0.578011
+`High LDL Cholesterol`     0.0157021  0.0105543  1.48774 0.136874
+
+TEST  accuracy = 0.7785  precision = NA  recall = 0  f1 = NA  AUC = 0.4965  RMSE = 0.4169
+vs baseline 0.2215 -> +0.5570
+TRAIN accuracy = 0.8038
+
+significant at p<0.05: 2 of 19 coefficients
+VIF (>5 problem, >10 severe):
+  `Exercise Habits`Medium     `Exercise Habits`High   `Sugar Consumption`High 
+                     1.35                      1.35                      1.33 
+`Sugar Consumption`Medium        `Stress Level`High `Alcohol Consumption`High 
+                     1.33                      1.32                      1.32 
+ `Alcohol Consumption`Low      `Stress Level`Medium 
+                     1.32                      1.32 
+
+ ====================================================================== 
+ M4_everything 
+ ====================================================================== 
+formula: `Heart Disease Status` ~ Age + `Blood Pressure` + `Cholesterol Level` +      BMI + `Triglyceride Level` + `Fasting Blood Sugar` + `CRP Level` +      `Homocysteine Level` + `Sleep Hours` + `Exercise Habits` +      Smoking + `Alcohol Consumption` + `Stress Level` + `Sugar Consumption` +      Gender + `Family Heart Disease` + Diabetes + `High Blood Pressure` +      `Low HDL Cholesterol` + `High LDL Cholesterol` 
+n coefficients: 25
+
+Call:
+lm(formula = f, data = tr)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-0.2807 -0.2090 -0.1871 -0.1549  0.8786 
+
+Coefficients:
+                            Estimate Std. Error t value Pr(>|t|)  
+(Intercept)                1.726e-01  7.546e-02   2.287   0.0222 *
+Age                       -2.591e-04  2.911e-04  -0.890   0.3734  
+`Blood Pressure`          -5.261e-04  3.000e-04  -1.754   0.0795 .
+`Cholesterol Level`        1.066e-04  1.208e-04   0.883   0.3775  
+BMI                        1.340e-03  8.360e-04   1.603   0.1089  
+`Triglyceride Level`       2.609e-05  6.060e-05   0.431   0.6668  
+`Fasting Blood Sugar`     -3.765e-05  2.240e-04  -0.168   0.8665  
+`CRP Level`               -6.092e-04  1.216e-03  -0.501   0.6163  
+`Homocysteine Level`       2.292e-04  1.217e-03   0.188   0.8506  
+`Sleep Hours`              1.181e-03  3.006e-03   0.393   0.6943  
+`Exercise Habits`Medium    1.060e-02  1.294e-02   0.819   0.4127  
+`Exercise Habits`High      8.643e-04  1.295e-02   0.067   0.9468  
+Smoking                    1.433e-02  1.055e-02   1.358   0.1745  
+`Alcohol Consumption`Low   2.157e-02  1.285e-02   1.678   0.0933 .
+`Alcohol Consumption`High  2.523e-02  1.292e-02   1.952   0.0510 .
+`Stress Level`Medium       2.585e-02  1.281e-02   2.018   0.0436 *
+`Stress Level`High         8.809e-03  1.296e-02   0.680   0.4967  
+`Sugar Consumption`Medium  1.157e-02  1.299e-02   0.890   0.3733  
+`Sugar Consumption`High    9.362e-03  1.282e-02   0.730   0.4652  
+GenderMale                -7.255e-03  1.055e-02  -0.687   0.4918  
+`Family Heart Disease`    -1.213e-02  1.055e-02  -1.150   0.2502  
+Diabetes                  -2.949e-03  1.056e-02  -0.279   0.7800  
+`High Blood Pressure`      1.015e-02  1.055e-02   0.962   0.3363  
+`Low HDL Cholesterol`     -5.901e-03  1.055e-02  -0.559   0.5759  
+`High LDL Cholesterol`     1.586e-02  1.056e-02   1.501   0.1333  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.3971 on 5662 degrees of freedom
+Multiple R-squared:  0.004494,	Adjusted R-squared:  0.0002746 
+F-statistic: 1.065 on 24 and 5662 DF,  p-value: 0.3762
+
+
+coefficient table:
+                            Estimate Std. Error  t value Pr(>|t|)
+(Intercept)                1.726e-01  0.0754630  2.28712  0.02223
+Age                       -2.591e-04  0.0002911 -0.89016  0.37342
+`Blood Pressure`          -5.261e-04  0.0003000 -1.75371  0.07954
+`Cholesterol Level`        1.066e-04  0.0001208  0.88257  0.37751
+BMI                        1.340e-03  0.0008360  1.60334  0.10892
+`Triglyceride Level`       2.609e-05  0.0000606  0.43063  0.66675
+`Fasting Blood Sugar`     -3.765e-05  0.0002240 -0.16809  0.86652
+`CRP Level`               -6.093e-04  0.0012157 -0.50115  0.61629
+`Homocysteine Level`       2.293e-04  0.0012172  0.18834  0.85061
+`Sleep Hours`              1.181e-03  0.0030057  0.39308  0.69428
+`Exercise Habits`Medium    1.060e-02  0.0129442  0.81913  0.41275
+`Exercise Habits`High      8.643e-04  0.0129487  0.06675  0.94678
+Smoking                    1.433e-02  0.0105495  1.35803  0.17451
+`Alcohol Consumption`Low   2.157e-02  0.0128491  1.67842  0.09332
+`Alcohol Consumption`High  2.523e-02  0.0129244  1.95176  0.05102
+`Stress Level`Medium       2.585e-02  0.0128077  2.01846  0.04359
+`Stress Level`High         8.809e-03  0.0129587  0.67979  0.49667
+`Sugar Consumption`Medium  1.157e-02  0.0129949  0.89040  0.37329
+`Sugar Consumption`High    9.362e-03  0.0128185  0.73032  0.46522
+GenderMale                -7.255e-03  0.0105523 -0.68750  0.49180
+`Family Heart Disease`    -1.213e-02  0.0105510 -1.15006  0.25017
+Diabetes                  -2.949e-03  0.0105568 -0.27938  0.77996
+`High Blood Pressure`      1.015e-02  0.0105514  0.96152  0.33633
+`Low HDL Cholesterol`     -5.901e-03  0.0105484 -0.55944  0.57588
+`High LDL Cholesterol`     1.586e-02  0.0105609  1.50144  0.13330
+
+TEST  accuracy = 0.7785  precision = NA  recall = 0  f1 = NA  AUC = 0.4939  RMSE = 0.4170
+vs baseline 0.2215 -> +0.5570
+TRAIN accuracy = 0.8038
+
+significant at p<0.05: 2 of 24 coefficients
+VIF (>5 problem, >10 severe):
+  `Exercise Habits`Medium     `Exercise Habits`High   `Sugar Consumption`High 
+                     1.35                      1.35                      1.33 
+`Sugar Consumption`Medium        `Stress Level`High `Alcohol Consumption`High 
+                     1.33                      1.32                      1.32 
+ `Alcohol Consumption`Low      `Stress Level`Medium 
+                     1.32                      1.32 
+
+ ====================================================================== 
+SUMMARY
+ ====================================================================== 
+               model n_features accuracy    AUC   RMSE recall
+ baseline: always No          0   0.7785 0.5000 0.4153      0
+         M1 clinical          4   0.7785 0.4973 0.4164      0
+            M2 +labs          9   0.7785 0.4914 0.4165      0
+       M3 +lifestyle         15   0.7785 0.4965 0.4169      0
+       M4 everything         20   0.7785 0.4939 0.4170      0
+
+accuracy gain over baseline:
+  M1 clinical                +0.0000
+  M2 +labs                   +0.0000
+  M3 +lifestyle              +0.0000
+  M4 everything              +0.0000
+
+ ====================================================================== 
+SIGN INTERPRETATION (M4, full model)
+ ====================================================================== 
+                           Estimate Std. Error t value Pr(>|t|)
+`Stress Level`Medium       0.025852   0.012808  2.0185  0.04359
+`Alcohol Consumption`High  0.025225   0.012924  1.9518  0.05102
+`Alcohol Consumption`Low   0.021566   0.012849  1.6784  0.09332
+`High LDL Cholesterol`     0.015857   0.010561  1.5014  0.13330
+Smoking                    0.014326   0.010549  1.3580  0.17451
+`Family Heart Disease`    -0.012134   0.010551 -1.1501  0.25017
+`Sugar Consumption`Medium  0.011571   0.012995  0.8904  0.37329
+`Exercise Habits`Medium    0.010603   0.012944  0.8191  0.41275
+`High Blood Pressure`      0.010145   0.010551  0.9615  0.33633
+`Sugar Consumption`High    0.009362   0.012818  0.7303  0.46522
+`Stress Level`High         0.008809   0.012959  0.6798  0.49667
+GenderMale                -0.007255   0.010552 -0.6875  0.49180
+`Low HDL Cholesterol`     -0.005901   0.010548 -0.5594  0.57588
+Diabetes                  -0.002949   0.010557 -0.2794  0.77996
+BMI                        0.001340   0.000836  1.6033  0.10892
+
+smallest p-values in the whole model:
+                            Estimate Std. Error t value Pr(>|t|)
+`Stress Level`Medium       0.0258519   0.012808   2.018  0.04359
+`Alcohol Consumption`High  0.0252254   0.012924   1.952  0.05102
+`Blood Pressure`          -0.0005261   0.000300  -1.754  0.07954
+`Alcohol Consumption`Low   0.0215661   0.012849   1.678  0.09332
+BMI                        0.0013404   0.000836   1.603  0.10892
+
+reference levels (first declared grade of each factor):
+  Exercise Habits = Low  Stress Level = Low  Sugar = Low  Alcohol = None 
+so a positive StressLevelHigh coefficient means high stress raises the fitted rate
+
+max |coefficient| outside the intercept: 0.0259 (age is on a 1-80 scale, this is nothing)
+
+ ====================================================================== 
+ANOVA: does any block earn its place?
+ ====================================================================== 
+M1 vs M4:
+Analysis of Variance Table
+
+Model 1: `Heart Disease Status` ~ Age + `Blood Pressure` + `Cholesterol Level` + 
+    BMI
+Model 2: `Heart Disease Status` ~ Age + `Blood Pressure` + `Cholesterol Level` + 
+    BMI + `Triglyceride Level` + `Fasting Blood Sugar` + `CRP Level` + 
+    `Homocysteine Level` + `Sleep Hours` + `Exercise Habits` + 
+    Smoking + `Alcohol Consumption` + `Stress Level` + `Sugar Consumption` + 
+    Gender + `Family Heart Disease` + Diabetes + `High Blood Pressure` + 
+    `Low HDL Cholesterol` + `High LDL Cholesterol`
+  Res.Df    RSS Df Sum of Sq      F Pr(>F)
+1   5682 895.86                           
+2   5662 892.97 20    2.8873 0.9154 0.5672
+
+M1 vs M3 (lifestyle block only):
+Analysis of Variance Table
+
+Model 1: `Heart Disease Status` ~ Age + `Blood Pressure` + `Cholesterol Level` + 
+    BMI
+Model 2: `Heart Disease Status` ~ Age + `Blood Pressure` + `Cholesterol Level` + 
+    BMI + `Exercise Habits` + Smoking + `Alcohol Consumption` + 
+    `Stress Level` + `Sugar Consumption` + Gender + `Family Heart Disease` + 
+    Diabetes + `High Blood Pressure` + `Low HDL Cholesterol` + 
+    `High LDL Cholesterol`
+  Res.Df    RSS Df Sum of Sq      F Pr(>F)
+1   5682 895.86                           
+2   5667 893.07 15    2.7828 1.1772 0.2814
+
+ ====================================================================== 
+PLOTS
+ ====================================================================== 
+  saved: C:/Users/b7993/heart_disease_eda/images_r/multiple_regression/01_model_accuracy_vs_baseline.png 
+Warning messages:
+1: Removed 5 rows containing missing values or values outside the scale range
+(`geom_col()`). 
+2: Removed 1 row containing missing values or values outside the scale range
+(`geom_vline()`). 
+  saved: C:/Users/b7993/heart_disease_eda/images_r/multiple_regression/02_model_auc_vs_baseline.png 
+Warning message:
+Removed 5 rows containing missing values or values outside the scale range
+(`geom_col()`). 
+  saved: C:/Users/b7993/heart_disease_eda/images_r/multiple_regression/03_model_rmse.png 
+  saved: C:/Users/b7993/heart_disease_eda/images_r/multiple_regression/04_coefficients_with_ci.png 
+  saved: C:/Users/b7993/heart_disease_eda/images_r/multiple_regression/05_coefficient_pvalues.png 
+  saved: C:/Users/b7993/heart_disease_eda/images_r/multiple_regression/06_actual_vs_predicted_m4.png 
+  saved: C:/Users/b7993/heart_disease_eda/images_r/multiple_regression/07_calibration_m4.png 
+  saved: C:/Users/b7993/heart_disease_eda/images_r/multiple_regression/08_residuals_m4.png 
+  saved: C:/Users/b7993/heart_disease_eda/images_r/multiple_regression/09_pred_vs_obs_bins_m4.png 
+  saved: C:/Users/b7993/heart_disease_eda/images_r/multiple_regression/10_confusion_matrix.png 
+  saved: C:/Users/b7993/heart_disease_eda/images_r/multiple_regression/11_partial_dependence.png 
+  saved: C:/Users/b7993/heart_disease_eda/images_r/multiple_regression/12_vif.png 
+
+Multiple regression done. M4 accuracy = 0.7785  AUC = 0.4939 

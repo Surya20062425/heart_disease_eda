@@ -1,0 +1,331 @@
+dataset: C:/Users/b7993/.cache/kagglehub/datasets/oktayrdeki/heart-disease/versions/1/heart_disease.csv 
+====================================================================== 
+1. STRUCTURE
+ ====================================================================== 
+rows: 10000  cols: 21 
+memory: 1.2 Mb 
+duplicate rows: 0 
+
+column types:
+                 Age               Gender       Blood Pressure 
+           "numeric"             "factor"            "numeric" 
+   Cholesterol Level      Exercise Habits              Smoking 
+           "numeric"             "factor"            "integer" 
+Family Heart Disease             Diabetes                  BMI 
+           "integer"            "integer"            "numeric" 
+ High Blood Pressure  Low HDL Cholesterol High LDL Cholesterol 
+           "integer"            "integer"            "integer" 
+ Alcohol Consumption         Stress Level          Sleep Hours 
+            "factor"             "factor"            "numeric" 
+   Sugar Consumption   Triglyceride Level  Fasting Blood Sugar 
+            "factor"            "numeric"            "numeric" 
+           CRP Level   Homocysteine Level Heart Disease Status 
+           "numeric"            "numeric"            "integer" 
+
+ ====================================================================== 
+2. MISSING DATA
+ ====================================================================== 
+ Alcohol Consumption    Cholesterol Level             Diabetes 
+                2532                   30                   30 
+   Sugar Consumption                  Age  High Blood Pressure 
+                  30                   29                   26 
+High LDL Cholesterol   Triglyceride Level            CRP Level 
+                  26                   26                   26 
+     Exercise Habits              Smoking  Low HDL Cholesterol 
+                  25                   25                   25 
+         Sleep Hours                  BMI         Stress Level 
+                  25                   22                   22 
+ Fasting Blood Sugar Family Heart Disease   Homocysteine Level 
+                  22                   21                   20 
+              Gender       Blood Pressure Heart Disease Status 
+                  19                   19                    0 
+
+rows with at least one NA: 2891 (28.9%)
+columns fully missing:  
+
+ ====================================================================== 
+3. FIRST 5 ROWS
+ ====================================================================== 
+  Age Gender Blood Pressure Cholesterol Level Exercise Habits Smoking
+1  56   Male            153               155            High       1
+2  69 Female            146               286            High       0
+3  46   Male            126               216             Low       0
+4  32 Female            122               293            High       1
+5  60   Male            166               242             Low       1
+  Family Heart Disease Diabetes      BMI High Blood Pressure
+1                    1        0 24.99159                   1
+2                    1        1 25.22180                   0
+3                    0        0 29.85545                   0
+4                    1        0 24.13048                   1
+5                    1        1 20.48629                   1
+  Low HDL Cholesterol High LDL Cholesterol Alcohol Consumption Stress Level
+1                   1                    0                High       Medium
+2                   1                    0                <NA>         High
+3                   1                    1                 Low          Low
+4                   0                    1                 Low         High
+5                   0                    0                 Low         High
+  Sleep Hours Sugar Consumption Triglyceride Level Fasting Blood Sugar
+1    7.633228            Medium                342                  NA
+2    8.744034            Medium                133                 157
+3    4.440440               Low                393                  92
+4    5.249405              High                293                  94
+5    7.030971              High                263                 154
+  CRP Level Homocysteine Level Heart Disease Status
+1 12.969246          12.387250                    0
+2  9.355389          19.298875                    0
+3 12.709873          11.230926                    0
+4 12.509046           5.961958                    0
+5 10.381259           8.153887                    0
+
+ ====================================================================== 
+4. SUMMARY (numeric)
+ ====================================================================== 
+      Age       Blood Pressure  Cholesterol Level    Smoking      
+ Min.   :18.0   Min.   :120.0   Min.   :150.0     Min.   :0.0000  
+ 1st Qu.:34.0   1st Qu.:134.0   1st Qu.:187.0     1st Qu.:0.0000  
+ Median :49.0   Median :150.0   Median :226.0     Median :1.0000  
+ Mean   :49.3   Mean   :149.8   Mean   :225.4     Mean   :0.5136  
+ 3rd Qu.:65.0   3rd Qu.:165.0   3rd Qu.:263.0     3rd Qu.:1.0000  
+ Max.   :80.0   Max.   :180.0   Max.   :300.0     Max.   :1.0000  
+ NAs    :29     NAs    :19      NAs    :30        NAs    :25      
+ Family Heart Disease    Diabetes           BMI        High Blood Pressure
+ Min.   :0.0000       Min.   :0.0000   Min.   :18.00   Min.   :0.0000     
+ 1st Qu.:0.0000       1st Qu.:0.0000   1st Qu.:23.66   1st Qu.:0.0000     
+ Median :0.0000       Median :0.0000   Median :29.08   Median :1.0000     
+ Mean   :0.4985       Mean   :0.4967   Mean   :29.08   Mean   :0.5035     
+ 3rd Qu.:1.0000       3rd Qu.:1.0000   3rd Qu.:34.52   3rd Qu.:1.0000     
+ Max.   :1.0000       Max.   :1.0000   Max.   :40.00   Max.   :1.0000     
+ NAs    :21           NAs    :30       NAs    :22      NAs    :26         
+ Low HDL Cholesterol High LDL Cholesterol  Sleep Hours     Triglyceride Level
+ Min.   :0.0000      Min.   :0.0000       Min.   : 4.001   Min.   :100.0     
+ 1st Qu.:0.0000      1st Qu.:0.0000       1st Qu.: 5.450   1st Qu.:176.0     
+ Median :1.0000      Median :0.0000       Median : 7.003   Median :250.0     
+ Mean   :0.5013      Mean   :0.4951       Mean   : 6.991   Mean   :250.7     
+ 3rd Qu.:1.0000      3rd Qu.:1.0000       3rd Qu.: 8.532   3rd Qu.:326.0     
+ Max.   :1.0000      Max.   :1.0000       Max.   :10.000   Max.   :400.0     
+ NAs    :25          NAs    :26           NAs    :25       NAs    :26        
+ Fasting Blood Sugar   CRP Level         Homocysteine Level
+ Min.   : 80.0       Min.   : 0.003647   Min.   : 5.000    
+ 1st Qu.: 99.0       1st Qu.: 3.674126   1st Qu.: 8.723    
+ Median :120.0       Median : 7.472164   Median :12.409    
+ Mean   :120.1       Mean   : 7.472201   Mean   :12.456    
+ 3rd Qu.:141.0       3rd Qu.:11.255592   3rd Qu.:16.141    
+ Max.   :160.0       Max.   :14.997087   Max.   :19.999    
+ NAs    :22          NAs    :26          NAs    :20        
+ Heart Disease Status
+ Min.   :0.0         
+ 1st Qu.:0.0         
+ Median :0.0         
+ Mean   :0.2         
+ 3rd Qu.:0.0         
+ Max.   :1.0         
+                     
+
+ ====================================================================== 
+5. SUMMARY (categorical)
+ ====================================================================== 
+
+-- Exercise Habits 
+    Var1 Freq
+1    Low 3271
+2 Medium 3332
+3   High 3372
+4   <NA>   25
+
+-- Stress Level 
+    Var1 Freq
+1    Low 3320
+2 Medium 3387
+3   High 3271
+4   <NA>   22
+
+-- Sugar Consumption 
+    Var1 Freq
+1    Low 3390
+2 Medium 3250
+3   High 3330
+4   <NA>   30
+
+-- Alcohol Consumption 
+      Var1 Freq
+1     None 2554
+2      Low 2488
+3 Moderate    0
+4     High 2426
+5     <NA> 2532
+
+-- Gender
+
+Female   Male   <NA> 
+  4978   5003     19 
+
+ ====================================================================== 
+6. TARGET BALANCE
+ ====================================================================== 
+heart disease: 2000 yes / 8000 no  -> prevalence 0.2000
+a model predicting 'No' always would score accuracy 0.8000 - that is the floor to beat
+
+ ====================================================================== 
+7. FEATURE SIGNAL vs TARGET
+ ====================================================================== 
+Heart Disease Status                  BMI   Homocysteine Level 
+              1.0000               0.0197               0.0083 
+High LDL Cholesterol   Triglyceride Level    Cholesterol Level 
+              0.0079               0.0029               0.0027 
+             Smoking  High Blood Pressure  Fasting Blood Sugar 
+              0.0025               0.0023              -0.0022 
+            Diabetes          Sleep Hours  Low HDL Cholesterol 
+             -0.0027              -0.0038              -0.0055 
+           CRP Level Family Heart Disease                  Age 
+             -0.0060              -0.0068              -0.0092 
+      Blood Pressure 
+             -0.0139 
+
+full matrix:
+                     Age Blood Pressure Cholesterol Level Smoking
+Age                    1             NA                NA      NA
+Blood Pressure        NA              1                NA      NA
+Cholesterol Level     NA             NA                 1      NA
+Smoking               NA             NA                NA       1
+Family Heart Disease  NA             NA                NA      NA
+Diabetes              NA             NA                NA      NA
+BMI                   NA             NA                NA      NA
+High Blood Pressure   NA             NA                NA      NA
+Low HDL Cholesterol   NA             NA                NA      NA
+High LDL Cholesterol  NA             NA                NA      NA
+Sleep Hours           NA             NA                NA      NA
+Triglyceride Level    NA             NA                NA      NA
+Fasting Blood Sugar   NA             NA                NA      NA
+CRP Level             NA             NA                NA      NA
+Homocysteine Level    NA             NA                NA      NA
+Heart Disease Status  NA             NA                NA      NA
+                     Family Heart Disease Diabetes BMI High Blood Pressure
+Age                                    NA       NA  NA                  NA
+Blood Pressure                         NA       NA  NA                  NA
+Cholesterol Level                      NA       NA  NA                  NA
+Smoking                                NA       NA  NA                  NA
+Family Heart Disease                    1       NA  NA                  NA
+Diabetes                               NA        1  NA                  NA
+BMI                                    NA       NA   1                  NA
+High Blood Pressure                    NA       NA  NA                   1
+Low HDL Cholesterol                    NA       NA  NA                  NA
+High LDL Cholesterol                   NA       NA  NA                  NA
+Sleep Hours                            NA       NA  NA                  NA
+Triglyceride Level                     NA       NA  NA                  NA
+Fasting Blood Sugar                    NA       NA  NA                  NA
+CRP Level                              NA       NA  NA                  NA
+Homocysteine Level                     NA       NA  NA                  NA
+Heart Disease Status                   NA       NA  NA                  NA
+                     Low HDL Cholesterol High LDL Cholesterol Sleep Hours
+Age                                   NA                   NA          NA
+Blood Pressure                        NA                   NA          NA
+Cholesterol Level                     NA                   NA          NA
+Smoking                               NA                   NA          NA
+Family Heart Disease                  NA                   NA          NA
+Diabetes                              NA                   NA          NA
+BMI                                   NA                   NA          NA
+High Blood Pressure                   NA                   NA          NA
+Low HDL Cholesterol                    1                   NA          NA
+High LDL Cholesterol                  NA                    1          NA
+Sleep Hours                           NA                   NA           1
+Triglyceride Level                    NA                   NA          NA
+Fasting Blood Sugar                   NA                   NA          NA
+CRP Level                             NA                   NA          NA
+Homocysteine Level                    NA                   NA          NA
+Heart Disease Status                  NA                   NA          NA
+                     Triglyceride Level Fasting Blood Sugar CRP Level
+Age                                  NA                  NA        NA
+Blood Pressure                       NA                  NA        NA
+Cholesterol Level                    NA                  NA        NA
+Smoking                              NA                  NA        NA
+Family Heart Disease                 NA                  NA        NA
+Diabetes                             NA                  NA        NA
+BMI                                  NA                  NA        NA
+High Blood Pressure                  NA                  NA        NA
+Low HDL Cholesterol                  NA                  NA        NA
+High LDL Cholesterol                 NA                  NA        NA
+Sleep Hours                          NA                  NA        NA
+Triglyceride Level                    1                  NA        NA
+Fasting Blood Sugar                  NA                   1        NA
+CRP Level                            NA                  NA         1
+Homocysteine Level                   NA                  NA        NA
+Heart Disease Status                 NA                  NA        NA
+                     Homocysteine Level Heart Disease Status
+Age                                  NA                   NA
+Blood Pressure                       NA                   NA
+Cholesterol Level                    NA                   NA
+Smoking                              NA                   NA
+Family Heart Disease                 NA                   NA
+Diabetes                             NA                   NA
+BMI                                  NA                   NA
+High Blood Pressure                  NA                   NA
+Low HDL Cholesterol                  NA                   NA
+High LDL Cholesterol                 NA                   NA
+Sleep Hours                          NA                   NA
+Triglyceride Level                   NA                   NA
+Fasting Blood Sugar                  NA                   NA
+CRP Level                            NA                   NA
+Homocysteine Level                    1                   NA
+Heart Disease Status                 NA                    1
+
+ ====================================================================== 
+8. DISEASE RATE BY CATEGORY
+ ====================================================================== 
+Gender                 Female=0.2069  Male=0.1937
+Smoking                0=0.1989  1=0.2009
+Diabetes               0=0.2011  1=0.1989
+Family Heart Disease   0=0.2024  1=0.197
+High Blood Pressure    0=0.1991  1=0.2009
+Low HDL Cholesterol    0=0.2024  1=0.198
+High LDL Cholesterol   0=0.197  1=0.2033
+Exercise Habits        Low=0.1972  Medium=0.2038  High=0.2002
+Stress Level           Low=0.1873  Medium=0.2143  High=0.1984
+Sugar Consumption      Low=0.1979  Medium=0.1951  High=0.206
+Alcohol Consumption    None=0.1915  Low=0.2042  Moderate=NA  High=0.2098
+
+by age decade:
+      dec    n   rate
+1 (17,30] 1985 0.1950
+2 (30,40] 1628 0.2193
+3 (40,50] 1563 0.1996
+4 (50,60] 1540 0.1935
+5 (60,70] 1582 0.1979
+6 (70,90] 1673 0.1967
+7    <NA>   29 0.1379
+
+ ====================================================================== 
+9. OUTLIERS (IQR rule, 1.5x)
+ ====================================================================== 
+Heart Disease Status   outliers=2000   lo=     0.00 hi=     0.00
+
+ ====================================================================== 
+10. HOW FAR DOES THE TARGET LIVE IN THE FILE ORDER?
+ ====================================================================== 
+0 1 2 3 4 5 6 7 8 9 
+0 0 0 0 0 0 0 0 1 1 
+if this is 0 then 0 then 1 the label is positional, not clinical - see the report
+
+ ====================================================================== 
+11. PLOTS
+ ====================================================================== 
+  saved: C:/Users/b7993/heart_disease_eda/images_r/eda/01_class_balance.png 
+  saved: C:/Users/b7993/heart_disease_eda/images_r/eda/02_corr_with_target.png 
+  saved: C:/Users/b7993/heart_disease_eda/images_r/eda/03_corr_heatmap.png 
+  saved: C:/Users/b7993/heart_disease_eda/images_r/eda/04_missing_data.png 
+  saved: C:/Users/b7993/heart_disease_eda/images_r/eda/05_disease_rate_by_category.png 
+Warning message:
+Removed 1 row containing missing values or values outside the scale range
+(`geom_col()`). 
+  saved: C:/Users/b7993/heart_disease_eda/images_r/eda/06_rate_by_age_decade.png 
+  saved: C:/Users/b7993/heart_disease_eda/images_r/eda/07_numeric_distributions.png 
+  saved: C:/Users/b7993/heart_disease_eda/images_r/eda/08_outliers_bmi.png 
+Warning messages:
+1: Removed 22 rows containing non-finite outside the scale range
+(`stat_smooth()`). 
+2: Removed 22 rows containing missing values or values outside the scale range
+(`geom_point()`). 
+  saved: C:/Users/b7993/heart_disease_eda/images_r/eda/09_label_by_row_position.png 
+  saved: C:/Users/b7993/heart_disease_eda/images_r/eda/10_category_counts.png 
+  saved: C:/Users/b7993/heart_disease_eda/images_r/eda/11_duplicate_rows.png 
+
+EDA done.

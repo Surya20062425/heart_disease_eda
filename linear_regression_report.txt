@@ -1,0 +1,143 @@
+dataset: C:/Users/b7993/.cache/kagglehub/datasets/oktayrdeki/heart-disease/versions/1/heart_disease.csv 
+rows after dropping NA: 7109 of 10000
+split: 5687 train / 1422 test
+test prevalence (always predict No): 0.2215
+
+ ====================================================================== 
+1. MODEL: heart_disease = b0 + b1 * age
+ ====================================================================== 
+
+Call:
+lm(formula = `Heart Disease Status` ~ Age, data = tr)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-0.2039 -0.1990 -0.1943 -0.1894  0.8114 
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  0.2083732  0.0152355  13.677   <2e-16 ***
+Age         -0.0002468  0.0002907  -0.849    0.396    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.3972 on 5685 degrees of freedom
+Multiple R-squared:  0.0001267,	Adjusted R-squared:  -4.913e-05 
+F-statistic: 0.7207 on 1 and 5685 DF,  p-value: 0.396
+
+
+coefficients:
+                 Estimate  Std. Error    t value     Pr(>|t|)
+(Intercept)  0.2083732048 0.015235478 13.6768409 6.396259e-42
+Age         -0.0002467667 0.000290685 -0.8489145 3.959646e-01
+
+equation: P(disease) = 0.2084 + -0.000247 * age
+at age 70 the model says 0.1911 - above prevalence, but so is every fitted value
+
+ ====================================================================== 
+2. TEST-SET METRICS
+ ====================================================================== 
+      accuracy      precision         recall             f1     prevalence 
+        0.7785             NA         0.0000             NA         0.2215 
+predicted_rate             tp             tn             fp             fn 
+        0.0000         0.0000      1107.0000         0.0000       315.0000 
+
+RMSE  = 0.4161
+AUC   = 0.4984  (0.5 = coin flip)
+train prevalence = 0.1962
+
+ ====================================================================== 
+3. DOES ANY SINGLE PREDICTOR DO BETTER?
+ ====================================================================== 
+              feature       slope     auc
+                  BMI  1.4148e-03 0.51595
+       Blood Pressure -3.2018e-04 0.51009
+ Family Heart Disease -1.2692e-02 0.50987
+ High LDL Cholesterol  1.2000e-02 0.50932
+                  Age -1.8409e-04 0.50609
+            CRP Level -6.9125e-04 0.50537
+  High Blood Pressure  6.1912e-03 0.50481
+              Smoking  5.7832e-03 0.50449
+   Homocysteine Level  5.0940e-04 0.50394
+    Cholesterol Level  4.3411e-05 0.50336
+  Fasting Blood Sugar  6.6313e-05 0.50290
+   Triglyceride Level -1.7001e-05 0.50262
+
+best single-feature AUC is 0.516 - the distance from 0.5 is the whole story here
+
+ ====================================================================== 
+4. SINGLE CATEGORICAL PREDICTOR (Smoking)
+ ====================================================================== 
+
+Call:
+lm(formula = `Heart Disease Status` ~ Smoking, data = tr)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-0.2034 -0.2034 -0.1888 -0.1888  0.8112 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 0.188781   0.007531  25.067   <2e-16 ***
+Smoking     0.014591   0.010535   1.385    0.166    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.3972 on 5685 degrees of freedom
+Multiple R-squared:  0.0003373,	Adjusted R-squared:  0.0001615 
+F-statistic: 1.918 on 1 and 5685 DF,  p-value: 0.1661
+
+
+means by smoking status:
+    No    Yes 
+0.1888 0.2034 
+
+disease rate by every Yes/No flag:
+Smoking                  No=0.1983  Yes=0.2041
+Family Heart Disease     No=0.2076  Yes=0.1949
+Diabetes                 No=0.2026  Yes=0.2
+High Blood Pressure      No=0.1982  Yes=0.2044
+Low HDL Cholesterol      No=0.2025  Yes=0.2001
+High LDL Cholesterol     No=0.1954  Yes=0.2074
+
+ ====================================================================== 
+5. PREDICTED PROBABILITY BY AGE
+ ====================================================================== 
+ Age predicted_prob lower_ci upper_ci
+  18         0.2039   0.2039   0.2245
+  30         0.2010   0.2010   0.2160
+  40         0.1985   0.1985   0.2101
+  50         0.1960   0.1960   0.2064
+  60         0.1936   0.1936   0.2056
+  70         0.1911   0.1911   0.2068
+  80         0.1886   0.1886   0.2090
+
+ ====================================================================== 
+6. RESIDUAL DIAGNOSTICS
+ ====================================================================== 
+residual mean = 0.02529 (should be ~0)
+residual sd   = 0.41545 (sqrt(p(1-p)) at base rate = 0.41527)
+fitted range  = 0.1886 to 0.2039
+p-values of the single predictor: 0.000, 0.396
+a p above 0.05 means the feature is not distinguishable from noise
+
+ ====================================================================== 
+7. PLOTS
+ ====================================================================== 
+  saved: C:/Users/b7993/heart_disease_eda/images_r/linear_regression/01_disease_by_age.png 
+  saved: C:/Users/b7993/heart_disease_eda/images_r/linear_regression/02_single_feature_auc.png 
+Warning message:
+Removed 12 rows containing missing values or values outside the scale range
+(`geom_col()`). 
+  saved: C:/Users/b7993/heart_disease_eda/images_r/linear_regression/03_predicted_probability_by_age.png 
+  saved: C:/Users/b7993/heart_disease_eda/images_r/linear_regression/04_rate_by_age_decile.png 
+  saved: C:/Users/b7993/heart_disease_eda/images_r/linear_regression/05_rate_by_risk_flag.png 
+  saved: C:/Users/b7993/heart_disease_eda/images_r/linear_regression/06_rate_by_graded_category.png 
+Warning message:
+Removed 1 row containing missing values or values outside the scale range
+(`geom_col()`). 
+  saved: C:/Users/b7993/heart_disease_eda/images_r/linear_regression/07_predicted_vs_observed_bins.png 
+  saved: C:/Users/b7993/heart_disease_eda/images_r/linear_regression/08_residual_spread.png 
+  saved: C:/Users/b7993/heart_disease_eda/images_r/linear_regression/09_coefficient_ci.png 
+
+Simple linear regression done. accuracy = 0.7785 
